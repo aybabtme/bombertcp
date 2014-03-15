@@ -7,6 +7,7 @@ import (
 	"github.com/aybabtme/bomberman/logger"
 	"github.com/aybabtme/bomberman/player"
 	"net"
+	"strings"
 	"sync"
 )
 
@@ -130,7 +131,7 @@ func (t *TcpPlayer) receiveMoves(r *bufio.Reader, wg *sync.WaitGroup) {
 			return
 		}
 		var m player.Move
-		switch moveStr {
+		switch strings.TrimSpace(moveStr) {
 		case "up":
 			m = player.Up
 		case "down":
