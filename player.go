@@ -105,6 +105,12 @@ func (t *TcpPlayer) sendUpdates(w *bufio.Writer, wg *sync.WaitGroup) {
 			t.l.Errorf("[TCP] sending update to player, %v", err)
 			return
 		}
+
+		if _, err := w.WriteRune('\n'); err != nil {
+			t.l.Errorf("[TCP] sending EOL to player, %v", err)
+			return
+		}
+
 		if err := w.Flush(); err != nil {
 			t.l.Errorf("[TCP] flushing update to player, %v", err)
 			return
@@ -131,16 +137,16 @@ func (t *TcpPlayer) receiveMoves(r *bufio.Reader, wg *sync.WaitGroup) {
 			return
 		}
 		var m player.Move
-		switch strings.TrimSpace(moveStr) {
-		case "up":
+		switch player.Move(strings.TrimSpace(moveStr)) {
+		case player.Up:
 			m = player.Up
-		case "down":
+		case player.Down:
 			m = player.Down
-		case "left":
+		case player.Left:
 			m = player.Left
-		case "right":
+		case player.Right:
 			m = player.Right
-		case "bomb":
+		case player.PutBomb:
 			m = player.PutBomb
 		default:
 			t.l.Errorf("[TCP] invalid move string")
