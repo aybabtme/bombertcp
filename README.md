@@ -14,6 +14,7 @@ player in your programming language of choice.
 # Clients
 
 * `bombermanpy` by uiri: https://github.com/uiri/bombermanpy
+* `bombjava` by myself: https://github.com/aybabtme/bombjava
 * `your client here`
 
 # Docs
