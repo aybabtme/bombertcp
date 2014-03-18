@@ -32,16 +32,23 @@ There are only 5 valid moves a client can send to the TCP server:
 * `right\n`: ask to move your player right.
 * `bomb\n`: ask to place a bomb at your player's current location.
 
+Each string needs to be followed by a `\n` character, otherwise your move will
+be considered invalid.
+
 ### Invalid moves
 
 If the move you send is invalid, it will simply be ignored by the game. Only one
-move per turn will be used by the game.
+move per turn will be used by the game. If the string you send to the game is
+not a valid string, it will be ignored.
 
 ### Buffering
 
 If you send more than one move per turn, some of the move you send will be
-buffered and sent at each subsequent turns. Other moves that will be dropped.
-The length of that buffer is specified as constant `BufferedMoves`
+buffered and sent at each subsequent turns. Other moves that aren't buffered
+will be dropped on the floor and never be looked at, ever.
+
+The length of the move buffer is specified as constant `BufferedMoves` in
+`player.go`.
 
 ## Receiving an updated game state
 
