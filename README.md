@@ -13,8 +13,9 @@ player in your programming language of choice.
 
 # Clients
 
-* `bombermanpy` by uiri: https://github.com/uiri/bombermanpy
-* `bombjava` by myself: https://github.com/aybabtme/bombjava
+* *Python*: `bombermanpy` by uiri: https://github.com/uiri/bombermanpy
+* *Java*: `bombjava` by myself: https://github.com/aybabtme/bombjava
+* *Go*: you don't need a client...
 * `your client here`
 
 # Docs
