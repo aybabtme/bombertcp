@@ -105,7 +105,7 @@ two newline characters, as in `{json object here}\n\n`.
 ### The `Board`
 
 The size of the board is not explicitely given to you, rather implicit in the
-size of the 2x2 `Board` array. The size of the board can change from a game to
+size of the 2-dimensional `Board` array. The size of the board can change from a game to
 another, so do no hardcode them.
 
 The position of a `Cell` is implied from it's
