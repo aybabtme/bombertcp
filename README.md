@@ -1,7 +1,8 @@
 # bombertcp
 
-A TCP Bomberman player. The player must be compiled with the bomberman game,
-which will then serve as a server for TCP clients.
+A TCP [bomberman](https://github.com/aybabtme/bomberman) player. The player must
+be compiled with the bomberman game, which will then serve as a server for TCP
+clients.
 
 Clients to this TCP player can control a bomberman player by sending various
 commands on the TCP connection.  They will also receive every update to the game
@@ -51,37 +52,50 @@ about other players, aside from their position on the board.
 
 ### Format
 
-```json5
+```JSON
 {
-  "Turn": 12,               // current turn number
-  "TurnDuration": 33000000, // nanoseconds, duration of a turn
-  "Name": "p2",             // your name
-  "X": 49,                  // your X coordinate on the board
-  "Y": 21,                  // ...
-  "LastX": 48,              // the X coordinate you had last turn
-  "LastY": 21,              // ...
-  "Bombs": 0,               // current bombs you have used
-  "MaxBomb": 3,             // maximum bombs you can use
-  "MaxRadius": 3,           // explosion radius of bombs you will place in the future
-  "Alive": true,            // whether your player is alive or dead
-  "GameObject": ...,        // unspecified, do not rely on the data of this field
-  "Message":"",             // messages from the game, like victory, draw, etc
-
-  // the visible state of the board
+  "Turn": 12,
+  "TurnDuration": 33000000,
+  "Name": "p2",
+  "X": 49,
+  "Y": 21,
+  "LastX": 48,
+  "LastY": 21,
+  "Bombs": 0,
+  "MaxBomb": 3,
+  "MaxRadius": 3,
+  "Alive": true,
+  "GameObject": {"...", "..."},
+  "Message": "playing",
   "Board": [
-    [ /* ... array of Cell objects ...*/ ],
-    [ {"Name":"Wall"}, {"Name":"p1"}, {"Name":"Ground"}, {"Name":"Rock"}, ... ],
-    // ...
-    [ /* ... array of Cell objects ...*/ ]
+    [ "... array of Cell objects ..." ],
+    [ {"Name":"Wall"}, {"Name":"p1"}, {"Name":"Ground"}, {"Name":"Rock"}, "..." ],
+    "...",
+    [ "... array of Cell objects ..." ]
   ]
 }
 ```
+Of course, all the `"..."` are not actually there.
+
+* `Turn`: current turn number.
+* `TurnDuration`: in nanoseconds, duration of a turn.
+* `Name`: your name.
+* `X`: your X coordinate on the board.
+* `Y`: ...
+* `LastX`: the X coordinate you had last turn.
+* `LastY`: ...
+* `Bombs`: current bombs you have used.
+* `MaxBomb`: maximum bombs you can use.
+* `MaxRadius`: explosion radius of bombs you will place in the future.
+* `Alive`: whether your player is alive or dead.
+* `GameObject`: unspecified, do not rely on the data of this field.
+* `Message`: messages from the game, like victory, draw, etc.
+* `Board`: the visible state of the board.
 
 Each update will be a JSON object such as above, on a single line, followed by
 two newline characters, as in `{json object here}\n\n`.
 
-
-### Board
+### The `Board`
 
 The size of the board is not explicitely given to you, rather implicit in the
 size of the 2x2 `Board` array. The size of the board can change from a game to
