@@ -11,6 +11,12 @@ import (
 	"sync"
 )
 
+const (
+	// BufferedMoves is the number of moves
+	BufferedMoves   = 1
+	BufferedUpdates = 1
+)
+
 type TcpPlayer struct {
 	stateL sync.RWMutex
 	state  player.State
@@ -25,8 +31,8 @@ func NewTcpPlayer(state player.State, laddr string, log *logger.Logger) player.P
 		l:       log,
 		stateL:  sync.RWMutex{},
 		state:   state,
-		update:  make(chan player.State, 10), // Buffer some responses, if network is slow
-		outMove: make(chan player.Move, 1),   // Rate-limiting to 1 move per turn
+		update:  make(chan player.State, BufferedUpdates), // Buffer some responses, if network is slow
+		outMove: make(chan player.Move, BufferedMoves),    // Rate-limiting to 1 move per turn
 	}
 
 	go func() {
@@ -116,10 +122,6 @@ func (t *TcpPlayer) sendUpdates(w *bufio.Writer, wg *sync.WaitGroup) {
 			return
 		}
 		lastTurnSent = update.Turn
-
-		if !update.Alive {
-			return
-		}
 	}
 }
 
@@ -153,7 +155,11 @@ func (t *TcpPlayer) receiveMoves(r *bufio.Reader, wg *sync.WaitGroup) {
 			t.l.Debugf("[TCP] move='%s'", moveStr)
 			continue
 		}
-		t.outMove <- m
+		select {
+		case t.outMove <- m:
+		default:
+			// too many moves
+		}
 
 		t.stateL.RLock()
 		alive = t.state.Alive
