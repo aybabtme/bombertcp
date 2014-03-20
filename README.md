@@ -15,6 +15,7 @@ player in your programming language of choice.
 
 * **Python**: `bombermanpy` by uiri: https://github.com/uiri/bombermanpy
 * **Java**: `bombjava` by myself: https://github.com/aybabtme/bombjava
+* **Javascript/Node.js**: `bombermanjs` by mef51: https://github.com/mef51/bombermanjs
 * **Go**: you don't need a client...
 * `your client here`
 
