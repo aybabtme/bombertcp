@@ -13,10 +13,11 @@ player in your programming language of choice.
 
 # Clients
 
-* **Python**: `bombermanpy` by uiri: https://github.com/uiri/bombermanpy
+* **Erlang** `bomberman-erlang` by uiri: https://github.com/uiri/bomberman-erlang
+* **Go**: you don't need a client...
 * **Java**: `bombjava` by myself: https://github.com/aybabtme/bombjava
 * **Javascript/Node.js**: `bombermanjs` by mef51: https://github.com/mef51/bombermanjs
-* **Go**: you don't need a client...
+* **Python**: `bombermanpy` by uiri: https://github.com/uiri/bombermanpy
 * `your client here`
 
 # Docs
