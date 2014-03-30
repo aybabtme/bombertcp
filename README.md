@@ -18,6 +18,7 @@ player in your programming language of choice.
 * **Java**: `bombjava` by myself: https://github.com/aybabtme/bombjava
 * **Javascript/Node.js**: `bombermanjs` by mef51: https://github.com/mef51/bombermanjs
 * **Python**: `bombermanpy` by uiri: https://github.com/uiri/bombermanpy
+* **Ruby**: `bombermanrb` by Dylan: https://github.com/dylanahsmith/bombermanrb.
 * `your client here`
 
 # Docs
